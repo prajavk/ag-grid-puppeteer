@@ -1,0 +1,133 @@
+// Customize the look and feel of the grid with Sass variables
+// Up-to-date list of variables is available here: http://www.ag-grid.com/javascript-grid-styling/#customizing-sass-variables
+//
+
+/*last version variables
+=======================================================================*/
+
+$ag-icons-path: "~ag-grid-community/src/styles/ag-theme-balham/icons/";
+
+// Changes the background color of the grid
+$ag-background-color: $white;
+
+// Changes the font-family
+$ag-font-family: $font-family-base;
+
+// Changes the border color
+$ag-border-color: $Titanium500;
+
+// Changes the horizontal border color
+$ag-cell-horizontal-border: 1px solid $Titanium500;
+
+// added row border
+$ag-row-border-width: 1px;
+
+// Changes the stripe odd color
+$ag-odd-row-background-color: $Titanium200;
+
+// Changes the row hover color
+$ag-hover-color: $Titanium400;
+
+// Changes the row selected color
+$ag-selected-color: $Cobalt200;
+
+// Changes the header background
+$ag-header-background-color: $Titanium300;
+
+// Changes the border color of a selected cell
+$ag-active: $Cobalt500;
+
+// Changes the grid font color
+$ag-foreground-color: $Titanium800;
+
+// Changes the header font color
+$ag-header-foreground-color: $black;
+
+// Changes the header background color
+$ag-header-background-color: $Titanium400;
+
+// Changes the background of the selected cell
+$ag-editor-background-color: transparent;
+
+// Changes the padding of the cells
+$ag-cell-horizontal-padding: 12px;
+
+
+/*old version variables
+=====================================================================*/
+
+$icons-path: "~ag-grid-community/src/styles/ag-theme-balham/icons/";
+
+// Changes the background color of the grid
+$background-color: $white;
+
+// Changes the font-family
+$font-family: $font-family-base;
+
+// Changes the border color
+$border-color: $Titanium500;
+
+// Changes the horizontal border color
+$cell-horizontal-border: 1px solid $Titanium500;
+
+// added row border
+$row-border-width: 1px;
+
+// Changes the stripe odd color
+$odd-row-background-color: $Titanium200;
+
+// Changes the row hover color
+$hover-color: $Titanium400;
+
+// Changes the row selected color
+$selected-color: $Cobalt200;
+
+// Changes the header background
+$header-background-color: $Titanium300;
+
+// Changes the border color of a selected cell
+$active: $Cobalt500;
+
+// Changes the grid font color
+$foreground-color: $Titanium800;
+
+// Changes the header font color
+$header-foreground-color: $black;
+
+// Changes the header background color
+$header-background-color: $Titanium400;
+
+// Changes the background of the selected cell
+$editor-background-color: transparent;
+
+// Changes the padding of the cells
+$cell-horizontal-padding: 12px;
+@import "~ag-grid-community/src/styles/ag-grid.scss";
+@import "~ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+
+/* make header text wrap, without breaking words and without ellipsis */
+.ag-theme-balham .ag-header-cell-label .ag-header-cell-text {
+  height: auto;
+  overflow: visible;
+  overflow-wrap: normal;
+  text-overflow: clip;
+  white-space: normal;
+  line-height: normal;
+  text-transform: capitalize;
+  align-self: center;
+}
+.ag-theme-balham .ag-row{
+  border-color: $Titanium500;
+}
+.ag-theme-balham .ag-row.ag-row-last{
+  border-bottom: 1px solid $Titanium500;
+}
+.xmm-filters .ag-header-group-cell-with-group{
+    background-color: $white;
+}
+.ag-theme-balham .ag-icon-expanded:before,
+.ag-theme-balham .ag-icon-contracted:before{
+    cursor: pointer;
+}
+// end app.css content
+

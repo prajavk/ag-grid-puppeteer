@@ -1,0 +1,54 @@
+{
+    "name": "ag-grid-puppeteer",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "ag-grid-community": "^22.0.0",
+        "ag-grid-enterprise": "^22.0.0",
+        "ag-grid-react": "^22.0.0",
+        "react": "16.8.6",
+        "react-dom": "16.8.6",
+        "react-scripts": "3.4.1",
+        "node-sass": "^4.14.1",
+        "sass-loader": "^8.0.2"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "jest --detectOpenHandles",
+        "clean": "rm -rf node_modules",
+        "eject": "react-scripts eject",
+        "prettier": "prettier --write \"*/**/*.js\" \"*/**/*.json\" \"*/**/*.md\"",
+        "format": "prettier --write \"packages/**/*.{js,json,md}\" \"*.{js,json,md}\""
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.10.4",
+        "babel-jest": "^24.9.0",
+        "babel-polyfill": "^6.26.0",
+        "jest": "^24.9.0",
+        "jest-cli": "^24.9.0",
+        "jest-puppeteer": "^4.4.0",
+        "puppeteer": "^2.0.0",
+        "prettier": "^1.19.1",
+        "jest-environment-jsdom-fourteen": "^1.0.1",
+        "eslint": "^6.7.2",
+        "eslint-config-prettier": "^6.7.0",
+        "eslint-plugin-import": "^2.19.1",
+        "react-test-renderer": "^16.13.1"
+    }
+}

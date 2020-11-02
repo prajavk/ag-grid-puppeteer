@@ -27,9 +27,13 @@ Use node 10.15.0
 
 ### If your react-app using testing-lib 
 - npm script should be as below, 
+```
 "test": "react-scripts test --verbose=false --env=jsdom-fourteen",
+```
 
 `package.json`
+```
 "@testing-library/jest-dom": "^4.2.4",
 "@testing-library/react": "^9.3.2",
 "@testing-library/user-event": "^7.1.2",
+```

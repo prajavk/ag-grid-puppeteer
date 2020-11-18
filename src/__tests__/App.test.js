@@ -82,17 +82,22 @@ describe("React Ag-Grid Test", () => {
     await page.waitForSelector(
       ".ag-theme-balham > .ag-popup-editor > .ag-rich-select"
     );
-    await page.select(
-      ".ag-theme-balham > .ag-popup-editor > .ag-rich-select > .ag-rich-select-value",
-      "Female"
-    );
-    // Is this right selector to select new value
-    await page.waitForSelector(
-      ".ag-rich-select-list > .ag-virtual-list-viewport > .ag-virtual-list-container > .ag-virtual-list-item"
-    );
+
+    // This gives error with selector?
+    // await page.select(
+    //   ".ag-theme-balham > .ag-popup-editor > .ag-rich-select > .ag-rich-select-value",
+    //   "Female"
+    // );
+
+    // Is this right selector to select new value?
     // await page.select(
     //   ".ag-rich-select-list > .ag-virtual-list-viewport > .ag-virtual-list-container > .ag-virtual-list-item", "Female"
     // );
+
+    // This selects always first item from the dropdown (Male)
+    await page.click(
+      ".ag-theme-balham > .ag-popup-editor > .ag-rich-select .ag-virtual-list-item:nth-of-type(2) .ag-rich-select-row"
+    );
   });
   afterAll(async () => {
     await defaultContext.close();

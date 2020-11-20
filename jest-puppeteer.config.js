@@ -4,7 +4,7 @@ module.exports = {
     // false -  browser opens up with visual feedback
     // true  -  testcase runs in slient mode via console
     headless: false,
-    slowMo: 20,
+    slowMo: 30,
     defaultViewport: null,
     devtools: false,
     args: [

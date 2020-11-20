@@ -48,7 +48,7 @@ class MockGrid extends Component {
           cellRenderer: "genderCellRenderer",
           cellEditor: "agRichSelectCellEditor",
           cellEditorParams: {
-            values: ["Male", "Female"],
+            values: ["Male", "Female", "Gender"],
             cellRenderer: "genderCellRenderer"
           }
         },

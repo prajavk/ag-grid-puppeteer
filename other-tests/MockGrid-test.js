@@ -51,33 +51,6 @@ describe("React Ag-Grid Test", () => {
     await page.type('div[row-index="0"] [col-id="age"]', "22");
     await page.keyboard.type(String.fromCharCode(13));
 
-    // css selector to click on gender cell
-    const genderCell = await page.$(
-      'div[row-index="0"] div[col-id="gender"] div[ref="eCellWrapper"] span.ag-cell-value'
-    );
-    genderCell.click();
-    await page.waitFor(1000);
-
-    // Note - ag-grid css selectors to find agRichSelectCellEditor
-    await page.waitForSelector(
-      ".ag-theme-balham > .ag-popup-editor > .ag-rich-select"
-    );
-
-    const selectValue = "Gender";
-    // Works - use Xpath if part of string matched with value
-    // const [linkHandler] = await page.$x(
-    //   `//div[@class='ag-rich-select-list']//div[@class='ag-virtual-list-viewport']//div[@class='ag-virtual-list-container']//div[@class='ag-virtual-list-item']//div[@class='ag-rich-select-row']//span[contains(., '${selectValue}')]`
-    // );
-
-    // Works - use Xpath to match exact string with item value
-    const [linkHandler] = await page.$x(
-      `//div[@class='ag-virtual-list-container']//div[@class='ag-virtual-list-item']//div[@class='ag-rich-select-row']//span[text()='${selectValue}']`
-    );
-    if (linkHandler) {
-      await linkHandler.click();
-    }
-    await page.waitFor(1000);
-
     // css selector to find text area editor
     await page.waitForSelector(
       'div[row-index="0"] div[col-id="address"] div[ref="eCellWrapper"] .ag-cell-value'
@@ -97,13 +70,48 @@ describe("React Ag-Grid Test", () => {
       ".ag-theme-balham > .ag-popup-editor > .ag-large-text > .ag-large-textarea > textarea"
     );
     await textareaField.press("Backspace");
-    await textareaField.type("Edit Textarea with New Address", {
+    await textareaField.type("Edit Textarea Address", {
       delay: 10
     });
     await page.keyboard.type(String.fromCharCode(13));
     await page.waitFor(1000);
-  });
 
+    // css selector to click on gender cell
+    const genderCell = await page.$(
+      'div[row-index="0"] div[col-id="gender"] div[ref="eCellWrapper"] span.ag-cell-value'
+    );
+    genderCell.click();
+    await page.waitFor(1000);
+
+    // Note - ag-grid css selectors to find agRichSelectCellEditor
+    await page.waitForSelector(
+      ".ag-theme-balham > .ag-popup-editor > .ag-rich-select"
+    );
+
+    const selectValue = "Gender";
+    // Works - if part of string matched with value
+    // const [linkHandler] = await page.$x(
+    //   `//div[@class='ag-rich-select-list']//div[@class='ag-virtual-list-viewport']//div[@class='ag-virtual-list-container']//div[@class='ag-virtual-list-item']//div[@class='ag-rich-select-row']//span[contains(., '${selectValue}')]`
+    // );
+
+    // Works - to match exact string with item value
+    const [linkHandler] = await page.$x(
+      `//div[@class='ag-virtual-list-container']//div[@class='ag-virtual-list-item']//div[@class='ag-rich-select-row']//span[text()='${selectValue}']`
+    );
+    if (linkHandler) {
+      await linkHandler.click();
+    }
+    await page.waitFor(1000);
+    // Is css selector to select item value - not working?
+    // await page.select(
+    //   ".ag-rich-select-list > .ag-virtual-list-viewport > .ag-virtual-list-container > .ag-virtual-list-item", "Female"
+    // );
+
+    // Is css selector to select the second item from the dropdown (Female) - not working?
+    // await page.click(
+    //   ".ag-theme-balham > .ag-popup-editor > .ag-rich-select .ag-virtual-list-item:nth-of-type(2) .ag-rich-select-row"
+    // );
+  });
   afterAll(async () => {
     await defaultContext.close();
     await browser.close();

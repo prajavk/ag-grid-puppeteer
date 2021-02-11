@@ -40,3 +40,42 @@
   height: calc(100vh - 30px);
 }
 
+.float-right {
+  float: right !important;
+}
+.xmm-input-search {
+  position: relative;
+  display: block;
+  &.full-row,
+  &.full-row input {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 8px;
+  }
+}
+.xmm-input-search:before {
+  font-family: "Font Awesome\ 5 Free";
+  content: "\f002";
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: inherit;
+  color: $Titanium600;
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 5px;
+}
+
+// testcase grid
+.example-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.button-group {
+  padding-bottom: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+}

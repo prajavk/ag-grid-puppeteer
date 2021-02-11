@@ -1,9 +1,11 @@
 // Customize the look and feel of the grid with Sass variables
 // Up-to-date list of variables is available here: http://www.ag-grid.com/javascript-grid-styling/#customizing-sass-variables
-//
+// https://www.ag-grid.com/documentation/javascript/themes-v23-migration/
 
-/*last version variables
+/* v25.0.0 version - convert all the $ag-* global variables you have defined to theme parameters variables
 =======================================================================*/
+
+$ag-compatibility-mode: "legacy";
 
 $ag-icons-path: "~ag-grid-community/src/styles/ag-theme-balham/icons/";
 
@@ -53,57 +55,13 @@ $ag-editor-background-color: transparent;
 $ag-cell-horizontal-padding: 12px;
 
 
-/*old version variables
-=====================================================================*/
-
-$icons-path: "~ag-grid-community/src/styles/ag-theme-balham/icons/";
-
-// Changes the background color of the grid
-$background-color: $white;
-
-// Changes the font-family
-$font-family: $font-family-base;
-
-// Changes the border color
-$border-color: $Titanium500;
-
-// Changes the horizontal border color
-$cell-horizontal-border: 1px solid $Titanium500;
-
-// added row border
-$row-border-width: 1px;
-
-// Changes the stripe odd color
-$odd-row-background-color: $Titanium200;
-
-// Changes the row hover color
-$hover-color: $Titanium400;
-
-// Changes the row selected color
-$selected-color: $Cobalt200;
-
-// Changes the header background
-$header-background-color: $Titanium300;
-
-// Changes the border color of a selected cell
-$active: $Cobalt500;
-
-// Changes the grid font color
-$foreground-color: $Titanium800;
-
-// Changes the header font color
-$header-foreground-color: $black;
-
-// Changes the header background color
-$header-background-color: $Titanium400;
-
-// Changes the background of the selected cell
-$editor-background-color: transparent;
-
-// Changes the padding of the cells
-$cell-horizontal-padding: 12px;
+// v25.0.0 - update Theme config imports
 @import "~ag-grid-community/src/styles/ag-grid.scss";
-@import "~ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+@import "~ag-grid-community/src/styles/ag-theme-balham/sass/legacy/_ag-theme-balham-v22-compat.scss";
+
+// old version
+// @import "~ag-grid-community/src/styles/ag-grid.scss";
+// @import "~ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 /* make header text wrap, without breaking words and without ellipsis */
 .ag-theme-balham .ag-header-cell-label .ag-header-cell-text {

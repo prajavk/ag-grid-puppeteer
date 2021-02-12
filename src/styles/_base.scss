@@ -19,7 +19,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  top: 20px;
+  top: 40px;
   padding: 16px;
   min-width: 1230px;
   background-color: $Titanium200;
@@ -66,13 +66,37 @@
   top: 5px;
 }
 
+/* special case - to make page header sticky with content */
+.sticky-page-header {
+  position: sticky;
+  top: -20px;
+  height: 60px;
+  width: 100%;
+  z-index: 1;
+  background-color: #FAFAFA;
+  margin-top: -20px;
+  padding-top: 20px;
+  border-bottom: 0px solid #CACFD9;
+  .nav-link{
+    color: $Titanium800;
+    border-radius: 0;
+  }
+  .nav-link.active{
+    color: $Cobalt500;
+    font-weight: 500;
+    border-bottom: 2px solid $Cobalt500;
+  }
+}
+.test-header{
+  margin: 8px 0;
+}
+
 // testcase grid
 .example-wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-
 
 .button-group {
   padding-bottom: 1rem;

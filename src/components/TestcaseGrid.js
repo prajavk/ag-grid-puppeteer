@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { AgGridReact } from "ag-grid-react";
+import { AppContext } from "../app-context";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 class TestcaseGrid extends Component {
-  constructor(props) {
-    super(props);
+  static contextType = AppContext;
+  constructor(props, context) {
+    super(props, context);
     this.onSearchBoxChanged = this.onSearchBoxChanged.bind(this);
+    console.log("Testcase [App context] recall >>", context.testGridState);
     this.state = {
-      gridState: null,
+      testGridState: context.testGridState,
       searchKey: "",
       columnDefs: [
         {
@@ -129,13 +132,26 @@ class TestcaseGrid extends Component {
       rowData: null
     };
   }
+  componentDidMount() {
+    // console.log("parts props", this.context);
+  }
+  /**
+   * Remove event listeners
+   * when a component is being removed from the DOM
+   */
+  componentWillUnmount() {
+    this.saveGridState();
+  }
   onGridReady = params => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
 
     const httpRequest = new XMLHttpRequest();
     const updateData = data => {
-      this.setState({ rowData: data });
+      this.setState({ rowData: data }, () => {
+        // ISSUE: After Grid is ready with data, restore grid state not working for each data refresh
+        this.restoreState();
+      });
     };
 
     httpRequest.open(
@@ -146,9 +162,9 @@ class TestcaseGrid extends Component {
     httpRequest.onreadystatechange = () => {
       if (httpRequest.readyState === 4 && httpRequest.status === 200) {
         updateData(JSON.parse(httpRequest.responseText));
+        this.applySortConfig();
       }
     };
-    this.applySortConfig();
   };
 
   clearFilters = () => {
@@ -183,16 +199,17 @@ class TestcaseGrid extends Component {
   saveGridState = () => {
     const { searchKey } = this.state;
     if (this.gridApi && this.gridColumnApi) {
-      const gridState = {
+      const testGridState = {
         colState: this.gridColumnApi.getColumnState(),
         pivotState: this.gridColumnApi.isPivotMode(),
         filterState: this.gridApi.getFilterModel(),
         searchKey
       };
-      console.log("save state", gridState);
+      console.log("save state", testGridState);
       this.setState({
-        gridState
+        testGridState
       });
+      this.context.updateTestGridState(testGridState);
     }
 
     var savedFilterModel = this.gridApi.getFilterModel();
@@ -202,21 +219,20 @@ class TestcaseGrid extends Component {
   };
 
   restoreState = () => {
-    // this.gridApi.setFilterModel(this.state.savedFilterModel);
     const {
       colState,
       filterState,
       pivotState,
       searchKey
-    } = this.state.gridState;
+    } = this.state.testGridState;
     if (colState && this.gridApi && this.gridColumnApi) {
       this.gridColumnApi.setColumnState(colState);
       this.gridColumnApi.setPivotMode(pivotState);
       this.assignColumnState(colState);
       this.gridApi.setFilterModel(filterState);
       console.log(
-        "get state",
-        this.state.gridState,
+        "Restore state called",
+        this.state.testGridState,
         this.gridApi.getFilterModel()
       );
       this.setState(
@@ -226,8 +242,7 @@ class TestcaseGrid extends Component {
         prevState => {
           this.gridApi.setQuickFilter(searchKey);
           console.log(
-            "after state",
-
+            "check filtermodel{} from restore state",
             this.gridApi.getFilterModel()
           );
         }
